@@ -2,5 +2,5 @@
 """Task#2. Basic annotations - floor"""
 
 
-def floor(n: float):
+def floor(n: float) -> float:
     return math.floor(n)
