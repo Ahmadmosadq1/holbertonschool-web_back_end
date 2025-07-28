@@ -3,6 +3,6 @@
 from typing import List
 
 
-def sum_list(input_list: List[float]):
+def sum_list(input_list: List[float]) -> float:
     """defining list of float"""
     return float(sum(input_list))
