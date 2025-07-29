@@ -4,4 +4,4 @@ from typing import Union, Tuple
 
 
 def to_kv(k: str, v: float | int) -> Tuple[str, float]:
-    return (k, float(v ** 2))
+    return (k, (v ** 2))
