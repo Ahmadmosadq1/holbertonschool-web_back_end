@@ -1,16 +1,22 @@
 #!/usr/bin/env python3
+""" Coroutine at the same time witha sync """
+
 import asyncio
+import random
 from typing import List
-from basic_async_syntax import wait_random
+wait_random = __import__('0-basic_async_syntax').wait_random
 
 
-async def wait_n(n: int, max_delay: int) -> List[float]:
-    """
-    Execute wait_random n times concurrently with the given max_delay.
-    Return the list of all delays in ascending order (without sort()).
-    """
-    tasks = [asyncio.create_task(wait_random(max_delay)) for _ in range(n)]
-    delays = []
-    for task in asyncio.as_completed(tasks):
-        delays.append(await task)
-    return delays
+async def wait_n(n: int, max_delay: int = 10) -> List[float]:
+    """ Waiting for run delay until max_delay, returns list of actual delays """
+    spawn = []
+    delay = []
+    for i in range(n):
+        delayed_task = asyncio.create_task(wait_random(max_delay))
+        delayed_task.add_done_callback(lambda x: delay.append(x.result()))
+        spawn.append(delayed_task)
+
+    for spawn in spawn:
+        await spawn
+
+    return delay
