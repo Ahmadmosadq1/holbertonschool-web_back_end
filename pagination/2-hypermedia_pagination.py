@@ -53,7 +53,7 @@ class Server:
         except Exception as e:
             return []
 
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> List[List]:
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> dict:
         """
         A function for hypermedia pagination.
 
