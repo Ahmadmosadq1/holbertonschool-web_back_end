@@ -65,8 +65,7 @@ class Server:
             tuple: size two tuple of start and end indexes.
         """
 
-        data = self.dataset()
-        start_index, end_index = self.index_range(page, page_size)
+        data= self.index_range(page, page_size)
         total_pages = math.ceil(len(data) / page_size)
         next_page = page + 1 if page < total_pages else None
         prev_page = page - 1 if page > total_pages else None
@@ -74,7 +73,7 @@ class Server:
         return {
             "page_size": page_size,
             "page": page,
-            "data": data[start_index:end_index],
+            "data": data,
             "next_page": next_page,
             "prev_page": prev_page,
             "total_pages": total_pages,
