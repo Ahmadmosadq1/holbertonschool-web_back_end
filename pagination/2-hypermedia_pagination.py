@@ -48,7 +48,7 @@ class Server:
         assert isinstance(page_size, int) and page_size > 0, "size < 0"
         try:
             data = self.dataset()
-            start_index, end_index = self.get_page(page, page_size)
+            start_index, end_index = self.index_range(page, page_size)
             return data[start_index:end_index]
         except Exception as e:
             return []
@@ -65,7 +65,7 @@ class Server:
             tuple: size two tuple of start and end indexes.
         """
 
-        data= self.index_range(page, page_size)
+        data = self.get_page(page, page_size)
         total_pages = math.ceil(len(data) / page_size)
         next_page = page + 1 if page < total_pages else None
         prev_page = page - 1 if page > total_pages else None
