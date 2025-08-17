@@ -1,4 +1,4 @@
-// Update all documents with name = "Holberton school" to add address
+//Update all documents with name = "Holberton school" to add address
 db.school.updateMany(
   { name: "Holberton school" },
   { $set: { address: "972 Mission street" } }
