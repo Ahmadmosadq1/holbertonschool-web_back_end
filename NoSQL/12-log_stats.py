@@ -10,10 +10,13 @@ if __name__ == "__main__":
     # Total logs
     print("{} logs".format(collection.count()))
 
-    # Methods breakdown
+    # Methods
     print("Methods:")
-    for m in ["GET", "POST", "PUT", "PATCH", "DELETE"]:
-        print("\tmethod {}: {}".format(m, collection.count({"method": m})))
+    methods = ["GET", "POST", "PUT", "PATCH", "DELETE"]
+    for method in methods:
+        count = collection.count({"method": method})
+        print("\tmethod {}: {}".format(method, count))
 
-    # Status check: method=GET and path=/status
-    print("{} status check".format(collection.count({"method": "GET", "path": "/status"})))
+    # Status check
+    status_check = collection.count({"method": "GET", "path": "/status"})
+    print("{} status check".format(status_check))
