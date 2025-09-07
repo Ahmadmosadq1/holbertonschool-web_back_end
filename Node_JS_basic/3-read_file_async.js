@@ -14,24 +14,22 @@ function countStudents(path) {
       console.log(`Number of students: ${students.length}`);
 
       const fields = {};
-      for (const student of students) {
-        const parts = student.split(',');
+      students.forEach((line) => {
+        const parts = line.split(',');
         const firstname = parts[0];
-        const field = parts[3];
+        const field = parts[parts.length - 1];
 
-        if (field) {
-          if (!fields[field]) {
-            fields[field] = [];
-          }
-          fields[field].push(firstname);
+        if (!fields[field]) {
+          fields[field] = [];
         }
-      }
+        fields[field].push(firstname);
+      });
 
-      for (const [field, names] of Object.entries(fields)) {
+      Object.keys(fields).forEach((field) => {
         console.log(
-          `Number of students in ${field}: ${names.length}. List: ${names.join(', ')}`
+          `Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}`,
         );
-      }
+      });
 
       resolve();
     });
